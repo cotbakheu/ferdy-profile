@@ -11,13 +11,13 @@ Figma reference: https://www.figma.com/community/file/1308624569713896610 (by [J
 Clone the project
 
 ```bash
-  git clone https://github.com/cotbakheu/WCD_Assignments
+  git https://github.com/cotbakheu/ferdy-profile
 ```
 
 Go to the project directory
 
 ```bash
-  cd WCD_Assignments
+  cd ferdy-profile
 ```
 
 Install dependencies
@@ -26,8 +26,8 @@ Install dependencies
   npm install
 ```
 
-Start the application
+Start the development
 
 ```bash
-  npm run tugas-3
+  npm run dev
 ```
