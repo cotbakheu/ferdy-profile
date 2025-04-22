@@ -1,41 +1,47 @@
-# This config was automatically generated from your source code
-# Stacks detected: deps:node:.,package_manager:yarn:
 version: 2.1
-orbs:
-  node: circleci/node@5
+
 jobs:
-  build-node:
-    # Build node project
-    executor: node/default
+  build:
+    docker:
+      - image: cimg/node:18.17
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn
       - run:
-          command: yarn run build
+          name: Install dependencies
+          command: npm install
       - run:
-          name: Create the ~/artifacts directory if it doesn't exist
-          command: mkdir -p ~/artifacts
-      # Copy output to artifacts dir
-      - run:
-          name: Copy artifacts
-          command: cp -R build dist public .output .next .docusaurus ~/artifacts 2>/dev/null || true
-      - store_artifacts:
-          path: ~/artifacts
-          destination: node-build
+          name: Build the app
+          command: npm run build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - dist
+
   deploy:
-    # This is an example deploy job, not actually used by the workflow
     docker:
       - image: cimg/base:stable
     steps:
-      # Replace this with steps to deploy to users
+      - attach_workspace:
+          at: .
+      - add_ssh_keys:
+          fingerprints:
+            - "SHA256:JzVkYx58+deBb0Pljizztu2M2ppKzVKT5pImCKKvGwk"
       - run:
-          name: deploy
-          command: '#e.g. ./deploy.sh'
+          name: Deploy to server
+          command: |
+            ssh $SERVER_USER@$SERVER_IP "mkdir -p ~/My-Project/my-profile"
+            scp -r dist/ $SERVER_USER@$SERVER_IP:~/My-Project/my-profile
+
 workflows:
-  build:
+  build_and_deploy:
     jobs:
-      - build-node
-    # - deploy:
-    #     requires:
-    #       - build-node
+      - build:
+          filters:
+            branches:
+              only: master
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
