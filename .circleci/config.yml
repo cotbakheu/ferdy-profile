@@ -27,6 +27,10 @@ jobs:
           fingerprints:
             - "SHA256:JzVkYx58+deBb0Pljizztu2M2ppKzVKT5pImCKKvGwk"
       - run:
+          name: Add server to known_hosts
+          command: |
+            ssh-keyscan -H "$SERVER_IP" >> ~/.ssh/known_hosts
+      - run:
           name: Deploy to server
           command: |
             ssh $SERVER_USER@$SERVER_IP "mkdir -p $PROJECT_DIR"
