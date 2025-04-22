@@ -17,31 +17,23 @@ jobs:
           paths:
             - dist
 
-  deploy:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - attach_workspace:
-          at: .
-      - add_ssh_keys:
-          fingerprints:
-            - "SHA256:JzVkYx58+deBb0Pljizztu2M2ppKzVKT5pImCKKvGwk"
-      - run:
-          name: Deploy to server
-          command: |
-            ssh ferdy@46.250.239.200 "mkdir -p ~/My-Project/my-profile"
-            scp -r dist/ ferdy@46.250.239.200:~/My-Project/my-profile
+  # deploy:
+  #   docker:
+  #     - image: cimg/base:stable
+  #   steps:
+  #     - attach_workspace:
+  #         at: .
+  #     - add_ssh_keys:
+  #         fingerprints:
+  #           - "SHA256:JzVkYx58+deBb0Pljizztu2M2ppKzVKT5pImCKKvGwk"
+  #     - run:
+  #         name: Deploy to server
+  #         command: |
+  #           ssh ferdy@46.250.239.200 "mkdir -p ~/My-Project/my-profile"
+  #           scp -r dist/ ferdy@46.250.239.200:~/My-Project/my-profile
 
 workflows:
   build_and_deploy:
     jobs:
-      - build:
-          filters:
-            branches:
-              only: master
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
+      - build
+      # - deploy
