@@ -26,8 +26,6 @@ function MenuToggler() {
     };
   }, []);
 
-  console.log("showMenu", showMenu);
-
   return (
     <div className="sm:hidden relative" ref={ref}>
       <IoMenu
@@ -90,7 +88,7 @@ function Navbar() {
   const location = useLocation();
 
   return (
-    <nav className="sticky top-0 left-0 w-full flex justify-between items-center p-6 sm:px-12 xl:px-24 bg-background-primary">
+    <nav className="fixed top-0 left-0 w-full flex justify-between items-center p-6 sm:px-12 xl:px-24 bg-background-primary">
       <div className="flex gap-2 sm:text-base xl:text-2xl sm:w-[33.33%]">
         <p className="text-brand-primary ">{"<F/>"}</p>
         <p className="text-white font-semibold">Ferdy Aqliyansyah</p>
