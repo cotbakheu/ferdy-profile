@@ -23,7 +23,7 @@ function Form() {
   return (
     <form className="mt-16 flex flex-col items-center">
       <div className="border-brand-primary w-fit bg-background-secondary border-2 rounded-br-3xl rounded-tl-3xl p-4">
-        <p className="text-2xl">Send Me A Message</p>
+        <p className="text-lg md:text-2xl">Send Me A Message</p>
       </div>
       <div className="w-full lg:w-3/5 mt-20">
         <div className="flex flex-col md:flex-row gap-16">
@@ -73,15 +73,15 @@ function Contact() {
   return (
     <div id="contact" className={classNames("h-full lg:h-[90vh] p-8 xl:px-24")}>
       <div className="flex flex-col items-center justify-center">
-        <span className="text-brand-primary text-4xl font-semibold flex items-center gap-4">
-          <span className="text-5xl">
+        <span className="text-brand-primary text-2xl md:text-4xl font-semibold flex items-center gap-4">
+          <span className="text-3xl md:text-5xl">
             <IoMailOutline />
           </span>{" "}
           Contact
         </span>
         <div className="flex items-center mt-4">
           <div className="rounded-full w-2 h-2 bg-brand-primary"></div>
-          <hr className="w-58 border border-brand-primary" />
+          <hr className="w-48 md:w-58 border border-brand-primary" />
           <div className="rounded-full w-2 h-2 bg-brand-primary"></div>
         </div>
         <p className="text-gray-200 text-xs mt-8">

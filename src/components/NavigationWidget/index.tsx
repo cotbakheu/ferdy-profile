@@ -12,7 +12,7 @@ function NavigationWidget() {
   return (
     <div
       className={classNames(
-        "h-10 w-10 p-[3px] rounded-full border cursor-pointer border-white fixed left-4 bg-background-primary",
+        "fixed h-10 w-10 p-[3px] rounded-full border cursor-pointer border-white left-4 bg-background-primary",
         style["container"]
       )}
     >

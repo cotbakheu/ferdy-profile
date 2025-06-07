@@ -11,7 +11,9 @@ function Bio() {
   return (
     <div className="w-[250px] shadow-[-3px_-3px] shadow-brand-secondary h-[420px] border-2 border-white p-6 rounded-br-[70px] rounded-tl-[70px]">
       <div className="flex justify-center items-center flex-col">
-        <div className="w-[100px] h-[100px] rounded-full border border-brand-primary"></div>
+        <div className="w-[100px] h-[100px] rounded-full border border-brand-primary overflow-hidden">
+          <img src="/profile-photo.jpeg" alt="Profile Photo" />
+        </div>
         <p className="text-lg">Ferdy Aqliyansyah</p>
         <p className="text-sm">Software Engineer</p>
       </div>
@@ -46,9 +48,15 @@ function Bio() {
         <li className="bg-brand-primary p-1 rounded-full">EXPRESS</li>
         <li className="bg-brand-primary p-1 rounded-full">VUE</li>
       </ul>
-      <button className="rounded-full w-full mt-4 h-8 bg-white text-background-primary">
-        Download CV
-      </button>
+      <Link
+        to={"/ferdy_cv_new.pdf"}
+        download={"ferdy_cv_new.pdf"}
+        target="_blank"
+      >
+        <button className="rounded-full w-full mt-4 h-8 bg-white text-background-primary">
+          Download CV
+        </button>
+      </Link>
     </div>
   );
 }

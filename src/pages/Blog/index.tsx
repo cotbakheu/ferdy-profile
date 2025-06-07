@@ -10,33 +10,66 @@ type BlogPost = {
   author: string;
   img: string;
   tags: string[];
+  link: string;
 };
 
 function Blog() {
   const [blogPost] = React.useState<BlogPost[]>([
     {
-      title: "What does it take to become a web developer?",
-      desc: "Web development, also known as website development, encompasses a variety of tasks and processes involved in creating websites for the internet…",
-      date: "7 Oct 2024",
+      title: "React Context Explained Like You’re Noob",
+      desc: "If you’ve ever passed props through five components like a game of telephone only to forget who started the call — congrats, you’re now eligible...",
+      date: "19 Apr 2025",
       author: "Ferdy",
       img: "/laptop.png",
-      tags: ["Web Development"],
+      tags: ["React", "Web Development"],
+      link: "https://medium.com/@ferdyaqli27/react-context-explained-like-youre-noob-55934c02870e",
     },
     {
-      title: "What does it take to become a web developer?",
-      desc: "Web development, also known as website development, encompasses a variety of tasks and processes involved in creating websites for the internet…",
-      date: "7 Oct 2024",
+      title:
+        "React: The Way of the Hooks” — Mastering the Elements of useState, useEffect, useRef, useMemo & useCallback",
+      desc: "React Hooks have revolutionized the way we write components, making our code more concise and readable. Among these Hooks, useMemo and useCallback...",
+      date: "12 Apr 2025",
       author: "Ferdy",
       img: "/laptop.png",
-      tags: ["Web Development"],
+      tags: ["React", "Web Development"],
+      link: "https://medium.com/@ferdyaqli27/react-the-way-of-the-hooks-mastering-the-elements-of-usestate-useeffect-useref-usememo-3152ec2c2276",
     },
     {
-      title: "What does it take to become a web developer?",
-      desc: "Web development, also known as website development, encompasses a variety of tasks and processes involved in creating websites for the internet…",
-      date: "7 Oct 2024",
+      title: "React + Tailwind: Building UI Faster Than Your Code Can Compile",
+      desc: "Let’s take a trip back to 2013, the year when React.js was open-sourced by Facebook. Developers were skeptical. A JavaScript library that mixes HTML...",
+      date: "8 Apr 2025",
       author: "Ferdy",
       img: "/laptop.png",
-      tags: ["Web Development"],
+      tags: ["Tailwind", "Web Development"],
+      link: "https://medium.com/@ferdyaqli27/react-tailwind-building-ui-faster-than-your-code-can-compile-ebe85f52df08",
+    },
+    {
+      title: "CSS Animations That Will Make Your Website Feel Alive",
+      desc: "In the ever-evolving landscape of web development, creating a website that captivates and engages users is paramount. One of the most effective ways...",
+      date: "4 Apr 2025",
+      author: "Ferdy",
+      img: "/laptop.png",
+      tags: ["CSS", "Animation", "Web Development"],
+      link: "https://medium.com/@ferdyaqli27/css-animations-that-will-make-your-website-feel-alive-416e769da7ef",
+    },
+    {
+      title:
+        "Safeguarding Your Code: Essential Security Practices in Version Control Systems",
+      desc: "In today’s digital world, keeping your code safe is very important. Version Control Systems (VCS), like Git, help manage and track code changes. They...",
+      date: "16 Mar 2025",
+      author: "Ferdy",
+      img: "/laptop.png",
+      tags: ["Git", "Security", "Version Control"],
+      link: "https://medium.com/@ferdyaqli27/safeguarding-your-code-essential-security-practices-in-version-control-systems-632a4d64f5a8",
+    },
+    {
+      title: "I am Trying to Replicate how Javascript Built in Method Work",
+      desc: "JavaScript is one of the most well-known programming languages and is widely used by developers, especially for web and mobile application development...",
+      date: "8 Mar 2025",
+      author: "Ferdy",
+      img: "/laptop.png",
+      tags: ["Javascript", "Web Development"],
+      link: "https://medium.com/@ferdyaqli27/i-am-trying-to-replicate-how-javascript-built-in-method-work-b9885fbdc563",
     },
   ]);
 
@@ -61,9 +94,11 @@ function Blog() {
         <p className="text-gray-200 text-xs mt-8">
           I rant (smartly) about tech & biz. Subscribe if you're into that.
         </p>
-        <button className="rounded-full border border-brand-primary p-4 py-2 mt-10 hover:bg-brand-primary">
-          Subscribe My Blogs
-        </button>
+        <Link to={"https://medium.com/@ferdyaqli27"} target="_blank">
+          <button className="rounded-full border cursor-pointer border-brand-primary p-4 py-2 mt-10 hover:bg-brand-primary">
+            Subscribe My Blogs
+          </button>
+        </Link>
       </div>
       <div className="mt-20 flex flex-col items-center justify-center gap-20">
         {blogPost.map((item, index) => (
@@ -75,7 +110,7 @@ function Blog() {
                 <img src={item.img} alt="gambar" />
               </div>
               <div>
-                <Link to={"/"}>
+                <Link to={item.link} target="_blank">
                   <p className="text-brand-primary text-2xl hover:underline">
                     {item.title}
                   </p>
