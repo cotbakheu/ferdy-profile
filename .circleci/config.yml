@@ -39,8 +39,8 @@ jobs:
             scp -r docker-compose.yml Dockerfile dist/ $SERVER_USER@$SERVER_IP:$PROJECT_DIR
             ssh $SERVER_USER@$SERVER_IP \<< EOF
               cd $PROJECT_DIR
-              docker compose down --rmi all
-              docker compose up -d
+              sudo docker compose down --rmi all
+              sudo docker compose up -d
             EOF
 
 workflows:
