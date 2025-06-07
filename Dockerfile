@@ -1,6 +1,10 @@
 FROM nginx:alpine
 
-COPY --from=build /app/dist /usr/share/nginx/html
+# Clean default static files from Nginx
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy your pre-built dist folder into Nginx public directory
+COPY dist/ /usr/share/nginx/html
 
 EXPOSE 80
 
