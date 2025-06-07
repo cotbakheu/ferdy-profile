@@ -16,6 +16,8 @@ jobs:
           root: .
           paths:
             - dist
+            - docker-compose.yml
+            - Dockerfile
 
   deploy:
     docker:
