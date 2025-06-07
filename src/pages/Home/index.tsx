@@ -12,6 +12,7 @@ function App() {
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  console.log("Hello");
   return (
     <>
       <NavigationWidget />
