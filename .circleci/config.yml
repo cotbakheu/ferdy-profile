@@ -34,7 +34,7 @@ jobs:
           name: Deploy to server
           command: |
             ssh $SERVER_USER@$SERVER_IP "mkdir -p $PROJECT_DIR"
-            scp -r dist/ $SERVER_USER@$SERVER_IP:$PROJECT_DIR
+            scp -r docker-compose.yml Dockerfile dist/ $SERVER_USER@$SERVER_IP:$PROJECT_DIR
 
 workflows:
   build_and_deploy:
