@@ -26,7 +26,7 @@ function Form() {
         <p className="text-2xl">Send Me A Message</p>
       </div>
       <div className="w-full lg:w-3/5 mt-20">
-        <div className="flex gap-16">
+        <div className="flex flex-col md:flex-row gap-16">
           <InputText
             value={formValue.name}
             label="Name *"
@@ -71,7 +71,7 @@ function Form() {
 
 function Contact() {
   return (
-    <div id="contact" className={classNames("h-[90vh] p-8 xl:px-24")}>
+    <div id="contact" className={classNames("h-full lg:h-[90vh] p-8 xl:px-24")}>
       <div className="flex flex-col items-center justify-center">
         <span className="text-brand-primary text-4xl font-semibold flex items-center gap-4">
           <span className="text-5xl">

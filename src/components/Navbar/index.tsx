@@ -10,8 +10,26 @@ import { Link, useLocation } from "react-router";
 
 function MenuToggler() {
   const [showMenu, setShowMenu] = React.useState(false);
+
+  // Logic Click Outside
+  const ref = React.useRef<HTMLDivElement>(null);
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  console.log("showMenu", showMenu);
+
   return (
-    <div className="sm:hidden relative">
+    <div className="sm:hidden relative" ref={ref}>
       <IoMenu
         onClick={() => setShowMenu(!showMenu)}
         className="text-white text-3xl"
@@ -21,14 +39,47 @@ function MenuToggler() {
           "absolute sm:hidden p-4 w-[80vw] top-12 transition-all duration-500 bg-background-secondary rounded-2xl shadow",
           showMenu ? "right-0" : "right-[-400px]"
         )}
+        onClick={() => setShowMenu(false)}
       >
         <ul>
-          <li>Home</li>
-          <li>Blog</li>
+          <li>
+            <Link className="w-full block" to={"/"}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link className="w-full block" to={"/blog"}>
+              Blog
+            </Link>
+          </li>
           <hr className={classNames("border-gray-400 my-2")} />
-          <li>Github</li>
-          <li>Instagram</li>
-          <li>Discord</li>
+          <li className="mt-4">
+            <Link
+              className="w-full flex gap-2 items-center"
+              to={"https://github.com/cotbakheu"}
+            >
+              <FaGithub className="text-brand-primary text-xl" />
+              <p>GitHub</p>
+            </Link>
+          </li>
+          <li className="mt-2">
+            <Link
+              className="w-full flex gap-2 items-center"
+              to={"https://www.instagram.com/ferdyaqliyansyah"}
+            >
+              <FaInstagram className="text-brand-primary text-xl" />
+              <p>Instagram</p>
+            </Link>
+          </li>
+          <li className="mt-2">
+            <Link
+              className="w-full flex gap-2 items-center"
+              to={"https://discord.gg/mAQ8GYnK"}
+            >
+              <FaDiscord className="text-brand-primary text-xl" />
+              <p>Discord</p>
+            </Link>
+          </li>
         </ul>
       </div>
     </div>

@@ -74,24 +74,28 @@ function Skills() {
 
 function Hero() {
   return (
-    <div className="p-8 xl:px-24 h-[90vh]">
+    <div className="p-8 xl:px-24 h-full lg:h-[90vh]">
       <h1 className="text-brand-secondary text-6xl mt-10 text-center hidden xl:block">
         Software Engineer
       </h1>
-      <div className="flex justify-between items-center gap-8 mt-8">
-        <Bio />
-        <div>
-          <p className="text-6xl">
+      <div className="flex flex-col sm:flex-row justify-around lg:justify-between items-center gap-8 mt-8 sm:flex-wrap lg:flex-nowrap">
+        <div className="flex justify-center w-full lg:w-auto">
+          <Bio />
+        </div>
+        <div className="w-full sm:w-[30%] lg:w-auto">
+          <p className="text-4xl md:text-6xl">
             Hey, <br />
             I'm Ferdy,
             <br />
           </p>
           <br />
-          <p className="text-3xl">
+          <p className="text-xl lg:text-3xl">
             Powered by caffeine and questionable sleep schedules.
           </p>
         </div>
-        <Skills />
+        <div className="w-full sm:w-[30%] lg:w-auto flex justify-center">
+          <Skills />
+        </div>
       </div>
     </div>
   );
