@@ -10,7 +10,7 @@ import style from "./styles/skillsStyle.module.css";
 
 function FrontendSkills() {
   return (
-    <div className="w-1/4 flex flex-col items-center">
+    <div className="w-full md:w-1/3 lg:w-1/4 flex flex-col items-center">
       <div className="bg-brand-secondary text-background-primary w-56 p-8 px-6 rounded-2xl flex flex-col items-center justify-center gap-4">
         <IoIosDesktop className="text-4xl" />
         <p className="text-sm">Frontend Development</p>
@@ -32,7 +32,7 @@ function FrontendSkills() {
 
 function BackendSkills() {
   return (
-    <div className="w-1/4 flex flex-col items-center">
+    <div className="w-full md:w-1/3 lg:w-1/4 flex flex-col items-center mt-10 md:mt-0">
       <div className="bg-brand-secondary text-background-primary w-56 p-8 px-6 rounded-2xl flex flex-col items-center justify-center gap-4">
         <FiServer className="text-4xl" />
         <p className="text-sm">Backend Development</p>
@@ -51,7 +51,7 @@ function BackendSkills() {
 
 function MobileSkills() {
   return (
-    <div className="w-1/4 flex flex-col items-center">
+    <div className="w-full md:w-1/3 lg:w-1/4 flex flex-col items-center mt-10 lg:mt-0">
       <div className="bg-brand-secondary text-background-primary w-56 p-8 px-6 rounded-2xl flex flex-col items-center justify-center gap-4">
         <IoIosPhonePortrait className="text-4xl" />
         <p className="text-sm">Mobile Development</p>
@@ -70,7 +70,7 @@ function MobileSkills() {
 
 function DatabaseSkills() {
   return (
-    <div className="w-1/4 flex flex-col items-center">
+    <div className="w-full md:w-1/3 lg:w-1/4 flex flex-col items-center mt-10 lg:mt-0">
       <div className="bg-brand-secondary text-background-primary w-56 p-8 px-6 rounded-2xl flex flex-col items-center justify-center gap-4">
         <IoServerOutline className="text-4xl" />
         <p className="text-sm">Database Development</p>
@@ -94,7 +94,10 @@ function Skills() {
   return (
     <div
       id="skills"
-      className={classNames("h-[90vh] p-8 xl:px-24", style["skill-background"])}
+      className={classNames(
+        "h-full lg:h-[90vh] p-8 xl:px-24",
+        style["skill-background"]
+      )}
     >
       <div className="flex flex-col items-center justify-center">
         <span className="text-brand-primary text-4xl font-semibold">
@@ -109,7 +112,7 @@ function Skills() {
           I am striving to never stop learning and improving
         </p>
       </div>
-      <div className="flex gap-4 justify-between mt-10">
+      <div className="flex flex-col md:flex-row md:flex-wrap lg:flex-nowrap gap-4 md:justify-around lg:justify-between items-start mt-10">
         <FrontendSkills />
         <BackendSkills />
         <MobileSkills />

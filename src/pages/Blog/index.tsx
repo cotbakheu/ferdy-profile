@@ -71,7 +71,7 @@ function Blog() {
             <hr className="border border-gray-300" />
             <br />
             <div className="flex gap-10">
-              <div>
+              <div className="hidden md:block">
                 <img src={item.img} alt="gambar" />
               </div>
               <div>
@@ -81,17 +81,23 @@ function Blog() {
                   </p>
                 </Link>
                 <br />
+                <div className="flex justify-center md:hidden">
+                  <img src={item.img} alt="gambar" />
+                </div>
+                <br />
                 <p className="text-sm">{item.desc}</p>
                 <br />
-                <div className="flex gap-10 items-center">
-                  {item.tags.map((el, index) => (
-                    <div
-                      key={index}
-                      className="rounded-full bg-gray-600 py-1 px-2 text-xs"
-                    >
-                      {el}
-                    </div>
-                  ))}
+                <div className="flex flex-wrap md:flex-row gap-10 items-center">
+                  <div className="flex w-full md:w-auto gap-2">
+                    {item.tags.map((el, index) => (
+                      <div
+                        key={index}
+                        className="rounded-full bg-gray-600 py-1 px-2 text-xs"
+                      >
+                        {el}
+                      </div>
+                    ))}
+                  </div>
                   <p className="text-xs">Author: {item.author}</p>
                   <p className="text-xs">Date: {item.date}</p>
                 </div>

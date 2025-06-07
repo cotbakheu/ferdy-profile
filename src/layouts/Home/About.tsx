@@ -7,11 +7,11 @@ function About() {
     <div
       id="about"
       className={classNames(
-        "h-[90vh] p-8 xl:px-24",
+        "h-full lg:h-[90vh] p-8 xl:px-24",
         background["about-background"]
       )}
     >
-      <div className="h-[140px]"></div>
+      <div className="h-[20px] lg:h-[140px]"></div>
       <div className="flex gap-40 items-end">
         <div>
           <div className="border-brand-primary w-fit bg-background-secondary border-2 rounded-br-3xl rounded-tl-3xl p-4">
@@ -41,7 +41,7 @@ function About() {
             </span>
           </div>
         </div>
-        <div>
+        <div className="hidden lg:block">
           <img src="/person-with-computer.png" alt="About Image" />
         </div>
       </div>
