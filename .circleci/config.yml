@@ -39,7 +39,7 @@ jobs:
             scp -r docker-compose.yml Dockerfile dist/ $SERVER_USER@$SERVER_IP:$PROJECT_DIR
             ssh $SERVER_USER@$SERVER_IP \<< EOF
               cd $PROJECT_DIR
-              echo "Hello, world!" > file.txt
+              docker compose down --rmi all
             EOF
 
 workflows:
