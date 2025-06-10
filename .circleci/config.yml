@@ -29,8 +29,7 @@ jobs:
             - src
 
   cypress-component-test:
-    docker:
-      - image: cimg/node:22.10
+    executor: cypress/default
     steps:
       - attach_workspace:
           at: .
