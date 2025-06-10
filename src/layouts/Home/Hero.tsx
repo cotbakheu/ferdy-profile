@@ -14,7 +14,9 @@ function Bio() {
         <div className="w-[100px] h-[100px] rounded-full border border-brand-primary overflow-hidden">
           <img src="/profile-photo.jpeg" alt="Profile Photo" />
         </div>
-        <p className="text-lg">Ferdy Aqliyansyah</p>
+        <p className="text-lg" id="name">
+          Ferdy Aqliyansyah
+        </p>
         <p className="text-sm">Software Engineer</p>
       </div>
       <ul className="mt-8 flex flex-col gap-3">
@@ -24,21 +26,21 @@ function Bio() {
             className="flex text-xs items-center gap-2"
           >
             <IoMailOutline className="text-brand-primary text-base" />
-            <p>ferdyaqli27@gmail.com</p>
+            <p id="email">ferdyaqli27@gmail.com</p>
           </Link>
         </li>
         <li className="flex text-xs items-center gap-2">
           <IoLocation className="text-brand-primary text-base" />
-          <p>Jakarta, Indonesia</p>
+          <p id="location">Jakarta, Indonesia</p>
         </li>
         <li className="flex text-xs items-center gap-2">
           <IoBriefcase className="text-brand-primary text-base" />
-          <p>Fulltime / Freelancer</p>
+          <p id="jobs">Fulltime / Freelancer</p>
         </li>
         <li>
           <Link to={"/"} className="flex text-xs items-center gap-2">
             <IoLink className="text-brand-primary text-base" />
-            <p>www.ferdyaqli.com</p>
+            <p id="website">www.ferdyaqli.com</p>
           </Link>
         </li>
       </ul>
@@ -52,6 +54,7 @@ function Bio() {
         to={"/ferdy_cv_new.pdf"}
         download={"ferdy_cv_new.pdf"}
         target="_blank"
+        id="download-cv"
       >
         <button className="rounded-full w-full mt-4 h-8 bg-white text-background-primary">
           Download CV

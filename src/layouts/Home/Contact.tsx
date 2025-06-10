@@ -20,8 +20,12 @@ function Form() {
       [event.target.name]: event.target.value,
     });
   };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+  };
   return (
-    <form className="mt-16 flex flex-col items-center">
+    <form onSubmit={handleSubmit} className="mt-16 flex flex-col items-center">
       <div className="border-brand-primary w-fit bg-background-secondary border-2 rounded-br-3xl rounded-tl-3xl p-4">
         <p className="text-lg md:text-2xl">Send Me A Message</p>
       </div>

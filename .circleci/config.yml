@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  cypress: cypress-io/cypress@4
+
 jobs:
   build:
     docker:
@@ -44,6 +47,11 @@ jobs:
             EOF
 
 workflows:
+  test:
+    jobs:
+      - cypress/run:
+          cypress-command: "npx cypress run --component"
+
   build_and_deploy:
     jobs:
       - build

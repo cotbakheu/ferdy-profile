@@ -17,10 +17,10 @@ function Experiences() {
     >
       <div className="flex flex-col items-center justify-center">
         <span className="text-brand-primary text-2xl md:text-4xl font-semibold flex items-center gap-4">
-          <span className="text-3xl md:text-5xl inline">
+          <div className="text-3xl md:text-5xl inline">
             <IoBriefcase />
-          </span>{" "}
-          Experiences
+          </div>
+          <span>Experiences</span>
         </span>
         <div className="flex items-center mt-4">
           <div className="rounded-full w-2 h-2 bg-brand-primary"></div>
