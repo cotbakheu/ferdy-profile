@@ -39,7 +39,7 @@ jobs:
           command: yarn install
       - run:
           name: Run Cypress Component Tests
-          command: yarn ci:run
+          command: yarn cy:run
 
   deploy:
     docker:
