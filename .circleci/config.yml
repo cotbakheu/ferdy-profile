@@ -58,7 +58,7 @@ jobs:
           command: |
             ssh $SERVER_USER@$SERVER_IP "mkdir -p $PROJECT_DIR"
             scp -r docker-compose.yml Dockerfile dist/ $SERVER_USER@$SERVER_IP:$PROJECT_DIR
-            ssh $SERVER_USER@$SERVER_IP << EOF
+            ssh $SERVER_USER@$SERVER_IP \<< EOF
               cd $PROJECT_DIR
               sudo docker compose down --rmi all
               sudo docker compose up -d
