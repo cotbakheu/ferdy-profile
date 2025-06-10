@@ -25,6 +25,7 @@ jobs:
             - cypress
             - cypress.config.ts
             - vite.config.ts
+            - package.json
             - src
 
   cypress-component-test:
