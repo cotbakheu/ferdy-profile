@@ -1,7 +1,8 @@
-import { defineConfig } from "cypress";
-import react from "@vitejs/plugin-react";
+// import { defineConfig } from "cypress";
+const { defineConfig } = require("cypress");
+const react = require("@vitejs/plugin-react");
 
-export default defineConfig({
+module.exports = defineConfig({
   component: {
     devServer: {
       framework: "react",
