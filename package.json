@@ -2,6 +2,7 @@
   "name": "ferdy-profile",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "cy:open": "cypress open",
     "cy:run": "cypress run --component",
