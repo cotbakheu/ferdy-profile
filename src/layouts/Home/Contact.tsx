@@ -2,10 +2,12 @@ import classNames from "classnames";
 
 // Icon Imports
 import { IoMailOutline, IoPaperPlaneOutline } from "react-icons/io5";
+import emailjs from "@emailjs/browser";
 
 // Component Imports
 import { InputText } from "../../components/Input";
 import React from "react";
+import Swal from "sweetalert2";
 
 function Form() {
   const [formValue, setFormValue] = React.useState({
@@ -13,16 +15,105 @@ function Form() {
     email: "",
     message: "",
   });
+  const [error, setError] = React.useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const validateForm = () => {
+    let isValid = true;
+    const newError = {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    };
+
+    if (!formValue.name) {
+      newError.name = "Name is required";
+      isValid = false;
+    }
+    if (!formValue.email) {
+      newError.email = "Email is required";
+      isValid = false;
+    }
+    if (!formValue.message) {
+      newError.message = "Message is required";
+      isValid = false;
+    }
+    if (formValue.email && !/\S+@\S+\.\S+/.test(formValue.email)) {
+      newError.email = "Email is invalid";
+      isValid = false;
+    }
+
+    setError(newError);
+    return isValid;
+  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormValue({
       ...formValue,
       [event.target.name]: event.target.value,
     });
+    setError({
+      ...error,
+      [event.target.name]: "",
+    });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateForm()) {
+      return;
+    }
+    setIsLoading(true);
+    try {
+      // Initialize EmailJS with your public key
+      emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "");
+
+      const result = await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID || "", // Email service ID
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "", // Email template ID
+        {
+          name: formValue.name,
+          fromEmail: formValue.email,
+          message: formValue.message,
+        }
+      );
+
+      console.log("Email sent successfully:", result);
+
+      setFormValue({
+        name: "",
+        email: "",
+        message: "",
+      });
+      setError({
+        name: "",
+        email: "",
+        message: "",
+      });
+
+      Swal.fire({
+        title: "Success!",
+        text: "Your message has been sent successfully.",
+        icon: "success",
+        confirmButtonText: "Okay",
+        confirmButtonColor: "#12F7D6",
+      });
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      Swal.fire({
+        title: "Error!",
+        text: "There was an error sending your message. Please try again later.",
+        icon: "error",
+        confirmButtonText: "Okay",
+        confirmButtonColor: "#e74c3c",
+      });
+    }
+    setIsLoading(false);
   };
   return (
     <form onSubmit={handleSubmit} className="mt-16 flex flex-col items-center">
@@ -37,7 +128,8 @@ function Form() {
             id="name"
             placeholder="Enter your name"
             onChange={handleChange}
-            required={true}
+            required={false}
+            error={error.name}
           />
           <InputText
             value={formValue.email}
@@ -46,7 +138,8 @@ function Form() {
             type="email"
             placeholder="Enter your email"
             onChange={handleChange}
-            required={true}
+            required={false}
+            error={error.email}
           />
         </div>
         <div className="w-full mt-20">
@@ -56,16 +149,47 @@ function Form() {
             id="message"
             placeholder="Enter your needs"
             onChange={handleChange}
-            required={true}
+            required={false}
+            error={error.message}
           />
         </div>
         <div className="flex justify-center mt-10">
           <button
+            disabled={isLoading}
             type="submit"
             className="rounded-full cursor-pointer text-background-primary bg-brand-primary px-4 py-3 flex gap-4"
           >
-            <p className="text-sm">Send Message</p>
-            <IoPaperPlaneOutline className="text-xl" />
+            {isLoading && (
+              <>
+                <p className="text-sm">Sending...</p>
+                <svg
+                  className="mr-3 -ml-1 size-5 animate-spin text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+              </>
+            )}
+            {!isLoading && (
+              <>
+                <p className="text-sm">Send Message</p>
+                <IoPaperPlaneOutline className="text-xl" />
+              </>
+            )}
           </button>
         </div>
       </div>
