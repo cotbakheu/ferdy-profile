@@ -6,6 +6,7 @@ type Props = {
   placeholder?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   required?: boolean;
+  error?: string;
 };
 
 function InputText({
@@ -15,6 +16,7 @@ function InputText({
   type = "text",
   placeholder = "",
   onChange,
+  error,
   required = false,
 }: Props) {
   return (
@@ -32,6 +34,7 @@ function InputText({
         placeholder={placeholder}
         className=" border-b border-brand-primary outline-none mt-2 w-full"
       />
+      {error && <p className="text-red-400 text-sm">{error}</p>}
     </div>
   );
 }
